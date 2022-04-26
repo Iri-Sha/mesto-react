@@ -9,7 +9,7 @@ function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
-  const [selectedCard, setSelectedCard] = React.useState(false);
+  const [selectedCard, setSelectedCard] = React.useState({});
 
   function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(true)
@@ -31,7 +31,7 @@ function App() {
     setIsEditAvatarPopupOpen(false);
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
-    setSelectedCard(false);
+    setSelectedCard({});
   }
 
   return (
@@ -51,9 +51,9 @@ function App() {
       <PopupWithForm 
         isOpen={isEditProfilePopupOpen}
         onClose={closeAllPopups}
-        name={"editProfile"}
-        title={"Редактировать профиль"}
-        buttonText={"Сохранить"}
+        name="editProfile"
+        title="Редактировать профиль"
+        buttonText="Сохранить"
       >
         <input id="inputProfileName" name="profileName" className="popup__input popup__input_profile_name" placeholder="Имя" type="text" minLength="2" maxLength="40" required/>
         <span id="inputProfileName-error" className="popup__error"></span>
@@ -64,9 +64,9 @@ function App() {
       <PopupWithForm 
         isOpen={isAddPlacePopupOpen}
         onClose={closeAllPopups}
-        name={"addPlace"}
-        title={"Новое место"}
-        buttonText={"Создать"}
+        name="addPlace"
+        title="Новое место"
+        buttonText="Создать"
       >
         <input id="inputMestoName" name="mestoName" className="popup__input popup__input_mesto_name" type="text" placeholder="Название" minLength="2" maxLength="30" required/>
         <span id="inputMestoName-error" className="popup__error"></span>
@@ -77,9 +77,9 @@ function App() {
       <PopupWithForm 
         isOpen={isEditAvatarPopupOpen}
         onClose={closeAllPopups}
-        name={"editAvatar"}
-        title={"Обновить аватар"}
-        buttonText={"Сохранить"}
+        name="editAvatar"
+        title="Обновить аватар"
+        buttonText="Сохранить"
       >
         <input id="inputAvatarLink" name="avatarLink" className="popup__input popup__input_avatar_link" type="url" placeholder="Ссылка на картинку" required/>
         <span id="inputAvatarLink-error" className="popup__error"></span>
@@ -92,9 +92,9 @@ function App() {
 
       <PopupWithForm 
         onClose={closeAllPopups}
-        name={"confirmDelete"}
-        title={"Вы уверены?"}
-        buttonText={"Да"}
+        name="confirmDelete"
+        title="Вы уверены?"
+        buttonText="Да"
       />
 
     </div>

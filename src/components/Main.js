@@ -3,10 +3,10 @@ import React from 'react';
 import {api} from '../utils/Api';
 import Card from './Card';
 
-function Main(props) {
+function Main({onEditProfile, onAddPlace, onEditAvatar, onCardClick}) {
     const [userName, setUserName] = React.useState('Жак Ив Кусто');
     const [userDescription, setUserDescription] = React.useState('Исследователь океана');
-    const [userAvatar, setUserAvatar] = React.useState({avatar});
+    const [userAvatar, setUserAvatar] = React.useState(avatar);
     const [cards, setCards] = React.useState([]);
 
     React.useEffect(() => {
@@ -27,15 +27,15 @@ function Main(props) {
       <main className="content">
         <section className="profile">
           <img className="profile__avatar" src={userAvatar} alt="Фото профиля"/>
-          <div className="profile__edit-avatar" onClick={props.onEditAvatar}></div>
+          <div className="profile__edit-avatar" onClick={onEditAvatar}></div>
           <div className="profile__info">
             <div className="profile__location">
               <h1 className="profile__name">{userName}</h1>
-              <button className="profile__edit-button" type="button" aria-label="Кнопка редактирования профиля" onClick={props.onEditProfile}></button>
+              <button className="profile__edit-button" type="button" aria-label="Кнопка редактирования профиля" onClick={onEditProfile}></button>
             </div>
             <p className="profile__about-me">{userDescription}</p>
           </div>
-          <button className="profile__add-button" type="button" aria-label="Кнопка добавления фото" onClick={props.onAddPlace}></button>
+          <button className="profile__add-button" type="button" aria-label="Кнопка добавления фото" onClick={onAddPlace}></button>
         </section>
 
         <section className="elements" aria-label="Фотографии">
@@ -44,7 +44,7 @@ function Main(props) {
                 <Card 
                     card={card}
                     key={card._id}
-                    onCardClick={props.onCardClick}
+                    onCardClick={onCardClick}
                 />
             ))}
           </ul>
