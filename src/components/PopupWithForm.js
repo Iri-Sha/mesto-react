@@ -4,7 +4,12 @@ function PopupWithForm({isOpen, onClose, name, title, buttonText, children, onSu
         <div className="popup__container">
           <button className="popup__close" type="button" aria-label="Закрыть" onClick={onClose}></button>
           <h2 className="popup__title">{title}</h2>
-          <form className={`popup__form popup__form_${name}`} name={name} noValidate onSubmit={onSubmit}>
+          <form
+            className={`popup__form popup__form_${name}`}
+            name={name}
+            //noValidate
+            onSubmit={onSubmit}
+          >
             {children}
             <button className={`popup__button popup__button_${name}`} type="submit" value={buttonText}>{isLoading ? 'Сохранение...' : buttonText}</button>
           </form>
