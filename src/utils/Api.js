@@ -11,7 +11,7 @@ class Api {
         return Promise.reject(`Ошибка ${res.status}`);
     }
 
-    getProfile() {
+    getUserInfo() {
         return fetch(`${this._baseUrl}/users/me`, {
             headers: this._headers
         })
@@ -25,23 +25,26 @@ class Api {
         .then(this._checkResponse)
     }
 
-    editProfile(name, about) {
+    editUserInfo(data) {
         return fetch(`${this._baseUrl}/users/me`, {
             method: 'PATCH',
             headers: this._headers,
             body: JSON.stringify({
-                name,
-                about
+                name: data.name,
+                about: data.about
             })
         })
         .then(this._checkResponse)
     }
 
-    addCard(name, link) {
+    addCard(data) {
         return fetch(`${this._baseUrl}/cards`, {
             method: 'POST',
             headers: this._headers,
-            body: JSON.stringify(name, link)
+            body: JSON.stringify({
+                name: data.name,
+                link: data.link
+            })
         })
         .then(this._checkResponse)
     }
@@ -70,12 +73,12 @@ class Api {
         .then(this._checkResponse)
     }
 
-    editAvatar(avatar) {
+    editAvatar(data) {
         return fetch(`${this._baseUrl}/users/me/avatar`, {
             method: 'PATCH',
             headers: this._headers,
             body: JSON.stringify({
-                avatar
+                avatar: data.avatar
             })
         })
         .then(this._checkResponse)
