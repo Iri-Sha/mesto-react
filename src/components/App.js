@@ -132,6 +132,23 @@ function handleCardDelete(e) {
   });
 }
 
+function handleOverlayClose(e){
+  if(e.target.classList.contains('popup')){
+    closeAllPopups();
+  }
+}
+
+React.useEffect(() => {
+  function handleEscapeKey(e) {
+    if (e.key === 'Escape') {
+      closeAllPopups();
+    }
+  }
+
+  document.addEventListener('keydown', handleEscapeKey)
+  return () => document.removeEventListener('keydown', handleEscapeKey)
+}, [])
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
@@ -154,6 +171,7 @@ function handleCardDelete(e) {
           onClose={closeAllPopups}
           onUpdateUser={handleUpdateUser}
           isLoading={isLoading}
+          handleOverlayClose={handleOverlayClose}
         />
 
         <AddPlacePopup 
@@ -161,6 +179,7 @@ function handleCardDelete(e) {
           onClose={closeAllPopups}
           onAddPlace={handleAddPlaceSubmit}
           isLoading={isLoading}
+          handleOverlayClose={handleOverlayClose}
         />
 
         <EditAvatarPopup 
@@ -168,11 +187,13 @@ function handleCardDelete(e) {
           onClose={closeAllPopups}
           onUpdateAvatar={handleUpdateAvatar}
           isLoading={isLoading}
+          handleOverlayClose={handleOverlayClose}
         />
 
         <ImagePopup 
           card={selectedCard}
           onClose={closeAllPopups}
+          handleOverlayClose={handleOverlayClose}
         />
 
         <PopupWithForm 
@@ -183,6 +204,8 @@ function handleCardDelete(e) {
           isOpen={isConfirmationPopupOpen}
           onSubmit={handleCardDelete}
           isLoading={isLoading}
+          handleOverlayClose={handleOverlayClose}
+          formValid={true}
         />
 
       </div>
